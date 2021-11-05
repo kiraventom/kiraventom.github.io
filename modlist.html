@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<!-- saved from url=(0070)file:///C:/Users/omen/AppData/Local/Temp/LINQPad6/_vhwssqxv/query.html -->
+<html>
+<head>
+	<title>touch some grass</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="Generator" content="github.com/hyperlinq/hyperlinq">
+	<style type="text/css">
+        html, body, div, span, iframe, p, pre, a, abbr, acronym, code, del, em, img, ins, q, strong, var, i, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figure, figcaption, footer, header, hgroup, nav, output, section, summary, time, mark, audio, video {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            vertical-align: baseline;
+            font: inherit;
+            font-size: 100%
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            margin: .2em 0 .05em 0;
+            padding: 0;
+            border: 0;
+            vertical-align: baseline
+        }
+
+        i, em {
+            font-style: italic
+        }
+
+        body {
+            margin: 0.5em;
+            font-family: Segoe UI, Verdana, sans-serif;
+            font-size: 82%;
+            background: white
+        }
+
+        pre, code, .fixedfont {
+            font-family: Consolas, monospace;
+            font-size: 10pt
+        }
+
+        a, a:visited {
+            text-decoration: none;
+            font-family: Segoe UI Semibold, sans-serif;
+            font-weight: bold;
+            cursor: pointer
+        }
+
+        a:hover, a:visited:hover {
+            text-decoration: underline
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            border: 2px solid #4C74B2;
+            margin: 0.3em 0.1em 0.2em 0.1em
+        }
+
+        table.limit {
+            border-bottom-color: #B56172
+        }
+
+        table.expandable {
+            border-bottom-style: dashed
+        }
+
+        table.error {
+            border-bottom-width: 4px
+        }
+
+        td, th {
+            vertical-align: top;
+            border: 1px solid #bbb;
+            margin: 0;
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            z-index: 2
+        }
+
+        th {
+            padding: 0.05em 0.3em 0.15em 0.3em;
+            text-align: left;
+            background-color: #ddd;
+            border: 1px solid #777;
+            font-size: .95em;
+            font-family: Segoe UI Semibold, sans-serif;
+            font-weight: bold
+        }
+
+        th.private {
+            font-family: Segoe UI;
+            font-weight: normal;
+            font-style: italic
+        }
+
+        td.private {
+            background: #f4f4ee
+        }
+
+        td.private table {
+            background: white
+        }
+
+        td, th.member {
+            line-height: 1.25;
+            padding: 0.1em 0.3em 0.2em 0.3em;
+            position: initial
+        }
+
+        tr.repeat > th {
+            font-size: 90%;
+            font-family: Segoe UI Semibold, sans-serif;
+            border: none;
+            background-color: #eee;
+            color: #999;
+            padding: 0.0em 0.2em 0.15em 0.3em
+        }
+
+        td.typeheader {
+            font-size: .95em;
+            background-color: #4C74B2;
+            color: white;
+            padding: 0 0.3em 0.25em 0.2em
+        }
+
+        td.n {
+            text-align: right
+        }
+
+        a.typeheader, a:link.typeheader, a:visited.typeheader, a:link.extenser, a:visited.extenser {
+            font-family: Segoe UI Semibold, sans-serif;
+            font-size: .95em;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            margin-bottom: -0.1em;
+            float: left
+        }
+
+        a.difheader, a:link.difheader, a:visited.difheader {
+            color: #ff8
+        }
+
+        a.extenser, a:link.extenser, a:visited.extenser {
+            margin: 0 0 0 0.3em;
+            padding-left: 0.5em;
+            padding-right: 0.3em
+        }
+
+        a:hover.extenser {
+            text-decoration: none
+        }
+
+        span.extenser {
+            font-size: 1.1em;
+            line-height: 0.8
+        }
+
+        span.cyclic {
+            padding: 0 0.2em 0 0;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            margin: 2px;
+            font-size: 1.5em;
+            line-height: 0;
+            vertical-align: middle
+        }
+
+        .arrow-up, .arrow-down {
+            display: inline-block;
+            margin: 0 0.3em 0.15em 0.1em;
+            width: 0;
+            height: 0;
+            cursor: pointer
+        }
+
+        .arrow-up {
+            border-left: 0.35em solid transparent;
+            border-right: 0.35em solid transparent;
+            border-bottom: 0.35em solid white
+        }
+
+        .arrow-down {
+            border-left: 0.35em solid transparent;
+            border-right: 0.35em solid transparent;
+            border-top: 0.35em solid white
+        }
+
+        table.group {
+            border: none;
+            margin: 0
+        }
+
+        td.group {
+            border: none;
+            padding: 0 0.1em
+        }
+
+        div.spacer {
+            margin: 0.6em 0
+        }
+
+        div.headingpresenter {
+            border: none;
+            border-left: 0.2em dotted #1a5;
+            margin: .8em 0 1em 0.1em;
+            padding-left: .5em
+        }
+
+        h1.headingpresenter {
+            border: none;
+            padding: 0 0 0.35em 0;
+            margin: 0;
+            font-family: Segoe UI Semibold, Arial;
+            font-weight: bold;
+            background-color: white;
+            color: #209020;
+            font-size: 1.1em;
+            line-height: 0.8
+        }
+
+        td.summary {
+            background-color: #DAEAFA;
+            color: black;
+            font-size: .95em;
+            padding: 0.05em 0.3em 0.2em 0.3em
+        }
+
+        tr.columntotal > td {
+            background-color: #eee;
+            font-family: Segoe UI Semibold;
+            font-weight: bold;
+            font-size: .95em;
+            color: #4C74B2;
+            text-align: right
+        }
+
+        span.graphbar {
+            background: #DAEAFA;
+            color: #DAEAFA;
+            padding-bottom: 1px;
+            margin-left: -0.2em;
+            margin-right: 0.2em
+        }
+
+        a.graphcolumn, a:link.graphcolumn, a:visited.graphcolumn {
+            color: #4C74B2;
+            text-decoration: none;
+            font-weight: bold;
+            font-family: Arial;
+            font-size: 1em;
+            line-height: 1;
+            letter-spacing: -0.2em;
+            margin-left: 0.15em;
+            margin-right: 0.2em;
+            cursor: pointer
+        }
+
+        a.collection, a:link.collection, a:visited.collection {
+            color: #209020
+        }
+
+        a.reference, a:link.reference, a:visited.reference {
+            color: #0080D1
+        }
+
+        span.meta, span.null {
+            color: #209020
+        }
+
+        span.warning {
+            color: red
+        }
+
+        span.false {
+            color: #888
+        }
+
+        span.true {
+            font-weight: bold
+        }
+
+        .highlight {
+            background: #ff8
+        }
+
+        code.xml b {
+            color: blue;
+            font-weight: normal
+        }
+
+        code.xml i {
+            color: brown;
+            font-weight: normal;
+            font-style: normal
+        }
+
+        code.xml em {
+            color: red;
+            font-weight: normal;
+            font-style: normal
+        }
+
+        span.cc {
+            background: #666;
+            color: white;
+            margin: 0 1.5px;
+            padding: 0 1px;
+            font-family: Consolas, monospace;
+            border-radius: 3px
+        }
+
+        ol, ul {
+            margin: 0.7em 0.3em;
+            padding-left: 2.5em
+        }
+
+        li {
+            margin: 0.3em 0
+        }
+
+        .difadd {
+            background: #d3f3d3
+        }
+
+        .difremove {
+            background: #f3d8d8
+        }
+
+        .rendering {
+            font-style: italic;
+            color: brown
+        }
+
+        p.scriptLog {
+            color: #a77;
+            background: #f8f6f6;
+            font-family: Consolas, monospace;
+            font-size: 9pt;
+            padding: .1em .3em
+        }
+
+        ::-ms-clear {
+            display: none
+        }
+
+        input, textarea, button, select {
+            font-family: Segoe UI;
+            font-size: 1em;
+            padding: .2em
+        }
+
+        button {
+            padding: .2em .4em
+        }
+
+        input, textarea, select {
+            margin: .15em 0
+        }
+
+        input[type="checkbox"], input[type="radio"] {
+            margin: 0 0.4em 0 0;
+            height: 0.9em;
+            width: 0.9em
+        }
+
+        input[type="radio"]:focus, input[type="checkbox"]:focus {
+            outline: thin dotted red
+        }
+
+        .checkbox-label {
+            vertical-align: middle;
+            position: relative;
+            bottom: .07em;
+            margin-right: .5em
+        }
+
+        fieldset {
+            margin: 0 .2em .4em .1em;
+            border: 1pt solid #aaa;
+            padding: .1em .6em .4em .6em
+        }
+
+        legend {
+            padding: .2em .1em
+        }
+	</style>
+	<script language="JavaScript" type="text/javascript">
+        function toggle(id) {
+            var table = document.getElementById(id);
+            if (table == null) return false;
+            var updown = document.getElementById(id + 'ud');
+            if (updown == null) return false;
+            var expand = updown.className == 'arrow-down';
+            updown.className = expand ? 'arrow-up' : 'arrow-down';
+            table.style.borderBottom = expand ? '2px solid' : 'dashed 2px';
+            if (table.rows.length < 2 || table.tBodies.length == 0) return false;
+            table.tBodies[0].style.display = expand ? '' : 'none';
+            if (table.tHead.rows.length == 2 && !table.tHead.rows[1].id.startsWith('sum'))
+                table.tHead.rows[1].style.display = expand ? '' : 'none';
+            if (table.tFoot != null)
+                table.tFoot.style.display = expand ? '' : 'none';
+            if (expand)
+                table.scrollIntoView({behavior: 'smooth', block: 'nearest'});
+            return false;
+        }
+	</script>
+</head>
+<body onload="external.log = msg =&gt; window.chrome.webview.postMessage ([&#39;log&#39;, msg?.toString()]);
+external.write = msg =&gt; window.chrome.webview.postMessage ([&#39;write&#39;, msg?.toString()]);
+external.writeLine = msg =&gt; window.chrome.webview.postMessage ([&#39;writeLine&#39;, msg?.toString()]);">
+<img src="res/skyrim.png" alt="160 active mods?"/>
+<p></p>
+<div id="final">
+	<div class="spacer">
+		<table id="t1">
+			<thead>
+			<tr>
+				<td class="typeheader" colspan="2"><a class="typeheader" onclick="return toggle(&#39;t1&#39;);"><span
+						class="arrow-up" id="t1ud"></span>IEnumerable&lt;DisplayMod&gt; (160 items)</a><a
+						class="extenser"
+						onclick="window.chrome.webview.postMessage([&#39;CustomClick&#39;,&#39;0&#39;,&#39;t1&#39;,&#39;&#39;,false]); return false;"><span
+						class="extenser">•••</span></a></td>
+			</tr>
+			<tr>
+				<th title="System.String">Name</th>
+				<th title="System.String">Link</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+				<td>SSE Fixes</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/10547">Link</a></td>
+			</tr>
+			<tr>
+				<td>Common Clothes - 2K Assets</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/5063">Link</a></td>
+			</tr>
+			<tr>
+				<td>JS Lockpicking 4k Textures</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/22160">Link</a></td>
+			</tr>
+			<tr>
+				<td>Skyrim 2020 Parallax Mountain Textures</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/2347">Link</a></td>
+			</tr>
+			<tr>
+				<td>A Quality World Map - Vivid with Stone Roads</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/5804">Link</a></td>
+			</tr>
+			<tr>
+				<td>Ordinator</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/1137">Link</a></td>
+			</tr>
+			<tr>
+				<td>A Quality World Map - Paper</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/5804">Link</a></td>
+			</tr>
+			<tr>
+				<td>A Quality World Map - Paper Patch for Atlas Map Markers</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/30095">Link</a></td>
+			</tr>
+			<tr>
+				<td>A Quality World Map - Paper Patch for Realistic Water Two</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/30095">Link</a></td>
+			</tr>
+			<tr>
+				<td>Achievements Mods Enabler</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/245">Link</a></td>
+			</tr>
+			<tr>
+				<td>Acquisitive Soul Gems Multithreaded RU</td>
+				<td><a href="https://gamer-mods.ru/load/skyrim_se/gejmplej/zakhvat_dush_v_kamni_se/158-1-0-5059">Link</a>
+				</td>
+			</tr>
+			<tr>
+				<td>Acquisitive Soul Gems Multithreaded</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/1469">Link</a></td>
+			</tr>
+			<tr>
+				<td>Address Library for SKSE Plugins</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/32444">Link</a></td>
+			</tr>
+			<tr>
+				<td>Alternate Start RU</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/12003">Link</a></td>
+			</tr>
+			<tr>
+				<td>Alternate Start</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/272">Link</a></td>
+			</tr>
+			<tr>
+				<td>Apocalypse RU</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/34952">Link</a></td>
+			</tr>
+			<tr>
+				<td>Apocalypse Patch for Ordinator</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/1090">Link</a></td>
+			</tr>
+			<tr>
+				<td>Apocalypse</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/1090">Link</a></td>
+			</tr>
+			<tr>
+				<td>Armoury of Tamriel - Patches</td>
+				<td>
+					<a href="https://gamer-mods.ru/load/skyrim_se/bronja/armoury_of_tamriel_v2_0_se/167-1-0-12418">Link</a>
+				</td>
+			</tr>
+			<tr>
+				<td>Armoury of Tamriel</td>
+				<td>
+					<a href="https://gamer-mods.ru/load/skyrim_se/bronja/armoury_of_tamriel_v2_0_se/167-1-0-12418">Link</a>
+				</td>
+			</tr>
+			<tr>
+				<td>Ask Innkeepers To Show Room</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/5990">Link</a></td>
+			</tr>
+			<tr>
+				<td>Barenziah Quest Markers</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/684">Link</a></td>
+			</tr>
+			<tr>
+				<td>New Legion</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/30468">Link</a></td>
+			</tr>
+			<tr>
+				<td>Better Dialogue Controls</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/1429">Link</a></td>
+			</tr>
+			<tr>
+				<td>Better Jumping</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/18967">Link</a></td>
+			</tr>
+			<tr>
+				<td>Better MessageBox Controls</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/1428">Link</a></td>
+			</tr>
+			<tr>
+				<td>Book Covers Skyrim - Desaturated</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/901">Link</a></td>
+			</tr>
+			<tr>
+				<td>Bug Fixes</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/33261">Link</a></td>
+			</tr>
+			<tr>
+				<td>Carriage and Ferry Travel Overhaul Patch for Immersive Citizens</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/8379">Link</a></td>
+			</tr>
+			<tr>
+				<td>Carriage and Ferry Travel Overhaul (Formerly Complete Fast Travel Overhaul)</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/8379">Link</a></td>
+			</tr>
+			<tr>
+				<td>Carriage and Ferry Travel Overhaul RU</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/29112">Link</a></td>
+			</tr>
+			<tr>
+				<td>Convenient Horses RU</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/12243">Link</a></td>
+			</tr>
+			<tr>
+				<td>Convenient Horses</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/9519">Link</a></td>
+			</tr>
+			<tr>
+				<td>Diverse Skyrim</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/7707">Link</a></td>
+			</tr>
+			<tr>
+				<td>Dynamic Animation Replacer</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/33746">Link</a></td>
+			</tr>
+			<tr>
+				<td>Common Clothes RU</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/31074">Link</a></td>
+			</tr>
+			<tr>
+				<td>Embers HD</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/14368">Link</a></td>
+			</tr>
+			<tr>
+				<td>Even Better Quest Objectives RU</td>
+				<td style="min-width:15em">
+					<a href="https://gamer-mods.ru/load/skyrim_se/gejmplej/uluchshennye_kvestovye_zapisi_even_better_quest_objectives_se/158-1-Link0-">
+						Link
+					</a>
+				</td>
+			</tr>
+			<tr>
+				<td>Even Better Quest Objectives</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/159">Link</a></td>
+			</tr>
+			<tr>
+				<td>FNIS - Behavior</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/3038">Link</a></td>
+			</tr>
+			<tr>
+				<td>FNIS - Creatures</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/3038">Link</a></td>
+			</tr>
+			<tr>
+				<td>FNIS - Spells</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/3038">Link</a></td>
+			</tr>
+			<tr>
+				<td>Fantasy Soundtrack Project</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/5268">Link</a></td>
+			</tr>
+			<tr>
+				<td>Floating Damage</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/14332">Link</a></td>
+			</tr>
+			<tr>
+				<td>Follower Commentary Overhaul FULL RU</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/46009">Link</a></td>
+			</tr>
+			<tr>
+				<td>Forgotten Dungeons FULL RU</td>
+				<td>
+					<a href="https://gamer-mods.ru/load/skyrim_se/doma_lokacii/forgotten_dungeons_sse/159-1-0-4878">Link</a>
+				</td>
+			</tr>
+			<tr>
+				<td>Fuz Ro D-oh - Silent Voice</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/15109">Link</a></td>
+			</tr>
+			<tr>
+				<td>Guard Dialogue Overhaul Redux FULL RU</td>
+				<td><a href="https://gamer-mods.ru/load/skyrim_se/kompanony_npc/gdo_se/166-1-0-6227">Link</a></td>
+			</tr>
+			<tr>
+				<td>Guards Armor Replacer RU</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/33975">Link</a></td>
+			</tr>
+			<tr>
+				<td>Guards Armor Replacer SSE</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/22671">Link</a></td>
+			</tr>
+			<tr>
+				<td>Headhunter - Bounties Redone RU</td>
+				<td><a href="https://gamer-mods.ru/load/skyrim_se/gejmplej/headhunter_bounties_redone_se/158-1-0-12753">Link</a>
+				</td>
+			</tr>
+			<tr>
+				<td>Headhunter - Bounties Redone</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/51847">Link</a></td>
+			</tr>
+			<tr>
+				<td>High Poly Project</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/12029">Link</a></td>
+			</tr>
+			<tr>
+				<td>Immersive First Person View</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/22306">Link</a></td>
+			</tr>
+			<tr>
+				<td>Immersive Sounds Patch</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/2951">Link</a></td>
+			</tr>
+			<tr>
+				<td>Immersive Citizens RU</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/36302">Link</a></td>
+			</tr>
+			<tr>
+				<td>Immersive Citizens</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/173">Link</a></td>
+			</tr>
+			<tr>
+				<td>Immersive Dragons</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/18957">Link</a></td>
+			</tr>
+			<tr>
+				<td>iHUD</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/12440">Link</a></td>
+			</tr>
+			<tr>
+				<td>Immersive Interactions - Animated Actions</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/47670">Link</a></td>
+			</tr>
+			<tr>
+				<td>Immersive Jewelry RU</td>
+				<td><a href="https://gamer-mods.ru/load/skyrim_se/odezhda/immersive_jewelry_sse/169-1-0-6435">Link</a>
+				</td>
+			</tr>
+			<tr>
+				<td>Immersive Patrols RU</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/45989">Link</a></td>
+			</tr>
+			<tr>
+				<td>Immersive Patrols</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/718">Link</a></td>
+			</tr>
+			<tr>
+				<td>Immersive Sounds</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/523">Link</a></td>
+			</tr>
+			<tr>
+				<td>Immersive Speechcraft</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/63874">Link</a></td>
+			</tr>
+			<tr>
+				<td>Immersive Speechcraft RU</td>
+				<td>
+					<a href="https://gamer-mods.ru/load/skyrim_se/gejmplej/immersive_speechcraft_se/158-1-0-7321">Link</a>
+				</td>
+			</tr>
+			<tr>
+				<td>Immersive World Encounters RU</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/20099">Link</a></td>
+			</tr>
+			<tr>
+				<td>Immersive World Encounters</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/18330">Link</a></td>
+			</tr>
+			<tr>
+				<td>Imperious FULL RU</td>
+				<td>
+					<a href="https://gamer-mods.ru/load/skyrim_se/gejmplej/imperious_races_of_skyrim_fixed_se/158-1-0-10896">Link</a>
+				</td>
+			</tr>
+			<tr>
+				<td>3DNPC</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/29194">Link</a></td>
+			</tr>
+			<tr>
+				<td>3DNPC Alternate Start Patch</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/29194">Link</a></td>
+			</tr>
+			<tr>
+				<td>3DNPC RU</td>
+				<td><a href="https://gamer-mods.ru/load/skyrim_se/kvesty/interesting_npcs_se/157-1-0-7753">Link</a></td>
+			</tr>
+			<tr>
+				<td>3DNPC Patch</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/29194">Link</a></td>
+			</tr>
+			<tr>
+				<td>Khajiit Merchants Buy Stolen Items</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/38210">Link</a></td>
+			</tr>
+			<tr>
+				<td>Lore-Based Loading Screens</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/1185">Link</a></td>
+			</tr>
+			<tr>
+				<td>Enhanced Blood Textures</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/2357">Link</a></td>
+			</tr>
+			<tr>
+				<td>Realistic Armor</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/36151">Link</a></td>
+			</tr>
+			<tr>
+				<td>More Light Spells</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/5234">Link</a></td>
+			</tr>
+			<tr>
+				<td>Immersive Movement</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/15649">Link</a></td>
+			</tr>
+			<tr>
+				<td>.NET Script Framework</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/21294">Link</a></td>
+			</tr>
+			<tr>
+				<td>New Legion RU</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/30930">Link</a></td>
+			</tr>
+			<tr>
+				<td>No Spinning Death Animation</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/1432">Link</a></td>
+			</tr>
+			<tr>
+				<td>Ordinator RU</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/34345">Link</a></td>
+			</tr>
+			<tr>
+				<td>Organic Riften Leaves</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/17911">Link</a></td>
+			</tr>
+			<tr>
+				<td>PapyrusUtil</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/13048">Link</a></td>
+			</tr>
+			<tr>
+				<td>Point The Way</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/352">Link</a></td>
+			</tr>
+			<tr>
+				<td>Populated Cities, Towns, Villages</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/2005">Link</a></td>
+			</tr>
+			<tr>
+				<td>Populated Cities, Towns, Villages RU</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/50937">Link</a></td>
+			</tr>
+			<tr>
+				<td>Populated Lands, Roads, Paths</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/1840">Link</a></td>
+			</tr>
+			<tr>
+				<td>Purchaseable Store Display Items</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/36005">Link</a></td>
+			</tr>
+			<tr>
+				<td>Quick Loot</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/21085">Link</a></td>
+			</tr>
+			<tr>
+				<td>Relationship Dialogue Overhaul Patch for USSEP</td>
+				<td>fuck you</td>
+			</tr>
+			<tr>
+				<td>Race Menu</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/19080">Link</a></td>
+			</tr>
+			<tr>
+				<td>Realistic Armor RU</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/36305">Link</a></td>
+			</tr>
+			<tr>
+				<td>Realistic Conversations</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/1717">Link</a></td>
+			</tr>
+			<tr>
+				<td>Realistic Lighting Overhaul</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/844">Link</a></td>
+			</tr>
+			<tr>
+				<td>Realistic Ragdolls and Force</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/1439">Link</a></td>
+			</tr>
+			<tr>
+				<td>Realistic Water Two</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/2182">Link</a></td>
+			</tr>
+			<tr>
+				<td>Relationship Dialogue Overhaul FULL RU</td>
+				<td><a href="https://gamer-mods.ru/load/skyrim_se/kompanony_npc/relationship_dialogue_se/166-1-0-6222">Link</a>
+				</td>
+			</tr>
+			<tr>
+				<td>Runis Clutter Improved</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/5870">Link</a></td>
+			</tr>
+			<tr>
+				<td>Run For Your Lives</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/2272">Link</a></td>
+			</tr>
+			<tr>
+				<td>Immersive Creatures Patch</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/18639">Link</a></td>
+			</tr>
+			<tr>
+				<td>SMIM RU</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/34017">Link</a></td>
+			</tr>
+			<tr>
+				<td>SMIM</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/659">Link</a></td>
+			</tr>
+			<tr>
+				<td>Parallax Shader Fix</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/31963">Link</a></td>
+			</tr>
+			<tr>
+				<td>Immersive Speech Dialogues RU</td>
+				<td><a href="https://coldharbour.ru/skyrim_se/material/id/44">Link</a></td>
+			</tr>
+			<tr>
+				<td>Scaleform Translation</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/22603">Link</a></td>
+			</tr>
+			<tr>
+				<td>Simply Knock - Tower Stone Fix</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/41590">Link</a></td>
+			</tr>
+			<tr>
+				<td>Simply Knock</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/14098">Link</a></td>
+			</tr>
+			<tr>
+				<td>Simply Knock Fix for SKSE64</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/24297">Link</a></td>
+			</tr>
+			<tr>
+				<td>SkyUI - Flashing Savegames Fix</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/20406">Link</a></td>
+			</tr>
+			<tr>
+				<td>SkyUI RU</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/21088">Link</a></td>
+			</tr>
+			<tr>
+				<td>SkyUI</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/12604">Link</a></td>
+			</tr>
+			<tr>
+				<td>Skyrim 2020 - 2K</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/2347">Link</a></td>
+			</tr>
+			<tr>
+				<td>Skyrim 3D Blacksmith</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/22892">Link</a></td>
+			</tr>
+			<tr>
+				<td>Skyrim 3D Cooking</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/23007">Link</a></td>
+			</tr>
+			<tr>
+				<td>Skyrim 3D Docks and Boardwalks</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/28781">Link</a></td>
+			</tr>
+			<tr>
+				<td>Skyrim 3D Furniture</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/23552">Link</a></td>
+			</tr>
+			<tr>
+				<td>Skyrim 3D High Hrothgar Steps</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/19905">Link</a></td>
+			</tr>
+			<tr>
+				<td>Skyrim 3D Icefloes</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/20101">Link</a></td>
+			</tr>
+			<tr>
+				<td>Skyrim 3D Landscapes</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/18247">Link</a></td>
+			</tr>
+			<tr>
+				<td>Skyrim 3D Misc</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/20829">Link</a></td>
+			</tr>
+			<tr>
+				<td>Skyrim 3D Misc - Buckets</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/20829">Link</a></td>
+			</tr>
+			<tr>
+				<td>Skyrim 3D Misc</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/20829">Link</a></td>
+			</tr>
+			<tr>
+				<td>Skyrim 3D Misc</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/20829">Link</a></td>
+			</tr>
+			<tr>
+				<td>Skyrim 3D Misc</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/20829">Link</a></td>
+			</tr>
+			<tr>
+				<td>Skyrim 3D Misc</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/20829">Link</a></td>
+			</tr>
+			<tr>
+				<td>Skyrim 3D Misc</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/20829">Link</a></td>
+			</tr>
+			<tr>
+				<td>Skyrim 3D Misc</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/20829">Link</a></td>
+			</tr>
+			<tr>
+				<td>Skyrim 3D Misc</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/20829">Link</a></td>
+			</tr>
+			<tr>
+				<td>Skyrim 3D Misc</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/20829">Link</a></td>
+			</tr>
+			<tr>
+				<td>Skyrim 3D Rocks</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/17732">Link</a></td>
+			</tr>
+			<tr>
+				<td>Skyrim 3D Signs</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/21338">Link</a></td>
+			</tr>
+			<tr>
+				<td>Skyrim 3D Trees and Plants RU</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/36703">Link</a></td>
+			</tr>
+			<tr>
+				<td>Skyrim 3D Trees and Plants - Parallaxed</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/40264">Link</a></td>
+			</tr>
+			<tr>
+				<td>Skyrim 3D Trees and Plants</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/12371">Link</a></td>
+			</tr>
+			<tr>
+				<td>Skyrim 3D Windmill</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/28261">Link</a></td>
+			</tr>
+			<tr>
+				<td>Immersive Creatures RU</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/19816">Link</a></td>
+			</tr>
+			<tr>
+				<td>Immersive Creatures</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/12680">Link</a></td>
+			</tr>
+			<tr>
+				<td>Sound Hammering Sounds</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/5592">Link</a></td>
+			</tr>
+			<tr>
+				<td>Take Notes</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/13570">Link</a></td>
+			</tr>
+			<tr>
+				<td>Take Notes RU</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/37415">Link</a></td>
+			</tr>
+			<tr>
+				<td>New Legion - Textures HD</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/30468">Link</a></td>
+			</tr>
+			<tr>
+				<td>The Choice is Yours</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/3850">Link</a></td>
+			</tr>
+			<tr>
+				<td>Total Character Makeover</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/1037">Link</a></td>
+			</tr>
+			<tr>
+				<td>Ultimate Combat RU</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/39457">Link</a></td>
+			</tr>
+			<tr>
+				<td>Ultimate Combat</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/17196">Link</a></td>
+			</tr>
+			<tr>
+				<td>Undead FX</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/5197">Link</a></td>
+			</tr>
+			<tr>
+				<td>USSEP FULL RU</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/29097">Link</a></td>
+			</tr>
+			<tr>
+				<td>Vivid Weathers</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/2187">Link</a></td>
+			</tr>
+			<tr>
+				<td>Whose Quest Is It Anyway</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/23581">Link</a></td>
+			</tr>
+			<tr>
+				<td>WiZkiD Patches</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/24046">Link</a></td>
+			</tr>
+			<tr>
+				<td>Yes, I'm Sure</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/24898">Link</a></td>
+			</tr>
+			<tr>
+				<td>Zim's Immersive Artifacts FULL RU</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/42403">Link</a></td>
+			</tr>
+			<tr>
+				<td>kryptopyr's Patch Hub</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/19518">Link</a></td>
+			</tr>
+			<tr>
+				<td>moreHUD Inventory Edition</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/18619">Link</a></td>
+			</tr>
+			<tr>
+				<td>moreHUD</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/12688">Link</a></td>
+			</tr>
+			<tr>
+				<td>SKSE64</td>
+				<td><a href="https://skse.silverlock.org/">Link</a></td>
+			</tr>
+			<tr>
+				<td>Populated Lands, Roads, Paths - Hiring Mercemaries Patch</td>
+				<td><a href="https://www.nexusmods.com/skyrimspecialedition/mods/1840">Link</a></td>
+			</tr>
+			<tr>
+				<td>Think To Yourself Messages</td>
+				<td style="min-width:13em">
+					<a href="https://gamer-mods.ru/load/skyrim_se/gejmplej/mysli_dovakina_ttym_think_to_yourself_messages_se/158-1-0-10573">
+						Link
+					</a>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+</body>
+</html>
