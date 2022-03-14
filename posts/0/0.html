@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Явная реализация интерфейса и System.Text.Json</title>
+	<style>
+		body {
+            width: 800px;
+            margin: 0 auto;
+            font-size: medium;
+            text-align: justify;
+        }
+		
+		tiny {
+            font-size: xx-small;
+			color: #999999;
+		}
+		
+	</style>
+</head>
+<body>
+<h2>
+	Явная реализация интерфейса и System.Text.Json
+</h2>
+<p style="color: #888888; font-size: small; text-align: left">
+	14.02.2022
+</p>
+<p>
+	Переписывал вчера структуру классов в
+	<a href="https://github.com/kiraventom/krvnotes">krvnotes</a>
+	и наткнулся на странный баг при сериализации и десериализации 
+	класса <code>Folder</code>, описывающего папку с заметками.
+</p>
+
+<p>
+	Приложение устроено так, что после любого действия оно сохраняет состояние в JSON,
+	а при открытии загружает все папки и находящиеся в них заметки из этого JSONа.
+	
+</p>
+<p>
+	В какой-то момент я очередной раз нажимаю F5 и вместо гуя вижу исключение десериализации.
+</p>
+<p style="text-align: center; font-size: small; margin-bottom: 30px" >
+	<img src="exception.png" alt="Exception">
+	<br/>
+	Чево случилось-то
+</p>
+<p>
+	Судя по сообщению, проблема в том, что десериализатор не смог сопоставить каждый из 
+	параметров конструктора класса <code>Folder</code> с его свойством. Однако дальше ничего не ясно
+	, потому что параметры конструктора называются name и notes, а свойства класса -- <code>Name</code> 
+	и <code>Notes</code>. Вроде всё должно работать.
+</p>
+<p style="text-align: center; font-size: small; margin-bottom: 30px" >
+	<img src="Folder.png" alt="Folder class">
+	<br/>
+	Класс <code>Folder</code>
+</p>
+<p style="text-align: center; font-size: small; margin-bottom: 30px" >
+	<img src="IFolder.png" alt="IFolder interface">
+	<br/>
+	Интерфейс <code>IFolder</code>
+</p>
+<p>
+	<code>PropertyNameCaseInsensitive</code>
+	выставлен в <code>true</code>, оба свойства публичные - в чём проблема? 
+</p>
+<p>
+	Первая мысль, пришедшая в голову -- наверно, дело в том, что сериализатор не смог сериализовать
+	явно реализованное свойство <code>Notes</code>, записал в JSON только свойство <code>Name</code>,
+	а теперь на десериализации не понимает, что передавать во второй параметр конструктора. 
+	<br/>
+	<br/>
+	Чтобы убедиться в этом, я открыл JSON.
+</p>
+<p style="text-align: center; font-size: small; margin-bottom: 30px" >
+	<img src="json.png" alt="JSON">
+</p>
+<p>
+	Как ни странно, в JSONе всё в порядке. Всё отлично сериализовалось, вот они <code>Notes</code> <tiny>слева направо</tiny> -- в чём тогда проблема
+	всё это десериализовать обратно?
+</p>
+<h3>Решение</h3>
+<p>
+	После многочасового мучения я наконец заметил, что мой код для сериализации и для десериализации немного отличается.
+</p>
+<p style="text-align: center; font-size: small; margin-bottom: 30px" >
+	<img width="600" src="serialize.png" alt="Serialization code">
+	<br/>
+	<img width="600" src="deserialize.png" alt="Deserialization code">
+	<br/>
+	Найди <code>System.OverflowException</code> отличий
+</p>
+<p>
+	Конкретнее говоря, сериализую я <code>IEnumerable&lt;<b>IFolder</b>&gt;</code>,
+	а десериализую в <code>IEnumerable&lt;<b>Folder</b>&gt;</code>. Я обратил на это внимание и решил 
+	попробовать привести всё к одному типу. Десериализовывать в интерфейсы нельзя, поэтому вместо этого я решил
+	сериализовать класс.
+</p>
+<p style="text-align: center; font-size: small; margin-bottom: 30px" >
+	<img src="cast.png" alt="Cast">
+	<br/>
+	Я добавил каст к <code>Folder</code> перед сериализацией...
+</p>
+<p style="text-align: center; font-size: small; margin-bottom: 30px" >
+	<img src="broken_json.png" alt="Broken JSON">
+	<br/>
+	... и вот что я увидел в JSON.
+</p>
+<p>
+	Здесь и стало ясно, что сериализатор STJ игнорирует явно реализованные свойства интерфейсов при работе с классами.
+	Всё это время сериализация работала только потому, что на вход отправлялись объекты <code>IFolder</code>,
+	которые для сериализатора содержали просто два публичных свойства. Но при попытке десериализации в класс
+	сериализатор не находил публичное свойство для параметра <code>notes</code> и кидал исключение.
+</p>
+<p>
+	Всё, что мне надо было сделать -- превратить поле <code>Notes</code> в свойство (<code>[JsonInclude]</code>, по идее,
+	тоже бы сработал, но мне не хотелось тащить ещё один атрибут), и всё заработало как надо. 
+</p>
+<p style="text-align: center; font-size: small; margin-bottom: 30px" >
+	<a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=2zn0qfWlRL8"><img width="300" src="happy_end.png" alt="Happy end"></a>
+</p>
+<h3 style="margin-top: 300px; text-align: center" >
+	SIKE!
+</h3>
+<p>
+	Нажимаем F5 и получаем ровно то же исключение. Тратим ещё час и выясняем: помимо того, что у каждого параметра и соответствующего свойства
+	 должны совпадать имена, также в точности должны совпадать их типы. Если тип параметра -- <code>IEnumerable&lt;Note&gt;</code>,
+	а тип свойства -- <code>List&lt;Note&gt;</code>, работать ничего не будет, даже если для десериализации используется конструктор.
+	<br/>
+	К сожалению, в exception message про точное совпадение типов не сказано, поэтому на выяснение этой детали ушло ещё достаточно времени. Oh well.
+</p>
+<p style="text-align: center; font-size: small; margin-bottom: 30px" >
+	<img src="folder-final.png" alt="Final Folder class">
+	<br/>
+	Финальный вид класса <code>Folder</code>
+</p>
+</body>
+</html>
